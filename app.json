@@ -1,4 +1,6 @@
 {
+  "name": "ordinary-wins",
+  "displayName": "OrdinaryWins",
   "expo": {
     "name": "ordinary-wins",
     "slug": "ordinary-wins",
@@ -24,7 +26,6 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router",
       [
         "expo-splash-screen",
         {
@@ -35,7 +36,6 @@
       ]
     ],
     "experiments": {
-      "typedRoutes": true,
       "reactCompiler": true
     }
   }

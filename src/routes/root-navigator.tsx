@@ -2,10 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import MainTabNavigator from "./main-tab-navigator";
-
-export type RootStackParamList = {
-  Main: undefined;
-};
+import type { RootStackParamList } from "./navigation-params-list";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

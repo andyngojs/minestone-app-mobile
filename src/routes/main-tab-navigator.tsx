@@ -1,23 +1,17 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { ColorValue } from "react-native";
 import { SymbolView } from "expo-symbols";
+import { ColorValue } from "react-native";
+import { BottomTabParamList } from "./navigation-params-list";
 
 import Home from "@/screens/home";
 import Memory from "@/screens/memory";
 import Sky from "@/screens/sky";
 import Timeline from "@/screens/timeline";
 
-export type RootTabParamList = {
-  Home: undefined;
-  Sky: undefined;
-  Memory: undefined;
-  Timeline: undefined;
-};
-
-const Tab = createBottomTabNavigator<RootTabParamList>();
+const Tab = createBottomTabNavigator<BottomTabParamList>();
 
 function getTabBarIcon(
-  routeName: keyof RootTabParamList,
+  routeName: keyof BottomTabParamList,
   color: ColorValue,
   size: number,
 ) {
@@ -25,7 +19,11 @@ function getTabBarIcon(
     case "Home":
       return (
         <SymbolView
-          name={{ ios: "house.fill", android: "home_filled", web: "home_filled" }}
+          name={{
+            ios: "house.fill",
+            android: "home_filled",
+            web: "home_filled",
+          }}
           size={size}
           tintColor={color}
         />
@@ -33,7 +31,11 @@ function getTabBarIcon(
     case "Sky":
       return (
         <SymbolView
-          name={{ ios: "cloud.sun.fill", android: "partly_cloudy_day", web: "partly_cloudy_day" }}
+          name={{
+            ios: "cloud.sun.fill",
+            android: "partly_cloudy_day",
+            web: "partly_cloudy_day",
+          }}
           size={size}
           tintColor={color}
         />
@@ -53,7 +55,11 @@ function getTabBarIcon(
     case "Timeline":
       return (
         <SymbolView
-          name={{ ios: "list.bullet.clipboard.fill", android: "timeline", web: "timeline" }}
+          name={{
+            ios: "list.bullet.clipboard.fill",
+            android: "timeline",
+            web: "timeline",
+          }}
           size={size}
           tintColor={color}
         />

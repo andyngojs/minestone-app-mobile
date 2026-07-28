@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from "react";
 import { useMemo } from "react";
-import { Text, View } from "react-native";
+import { StyleProp, Text, View, ViewStyle } from "react-native";
 
 import { useTheme } from "@/store/theme.store";
 
@@ -10,9 +10,10 @@ type CardElevation = "sm" | "md" | "lg";
 
 type CardProps = PropsWithChildren<{
   elevation?: CardElevation;
+  style?: StyleProp<ViewStyle>;
 }>;
 
-function CardRoot({ elevation = "sm", children }: CardProps) {
+function CardRoot({ elevation = "sm", style, children }: CardProps) {
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
 
@@ -22,6 +23,7 @@ function CardRoot({ elevation = "sm", children }: CardProps) {
         styles.base,
         theme.layout.shadow[elevation],
         { backgroundColor: theme.color.surface as string },
+        style,
       ]}
     >
       {children}

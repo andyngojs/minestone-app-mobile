@@ -39,7 +39,7 @@ export const getSystemColor: GetSystemColor = (colors, systemCommonColors) => ({
   // —— GREY variants ——
   border: colors.grey300,
   placeholder: colors.grey500,
-  disabled: '#eeeeee',
+  disabled: colors.grey200,
   onDisabled: colors.grey500,
 
   overlay60: hexToRgba(systemCommonColors.coreOverlay as string, 0.6),

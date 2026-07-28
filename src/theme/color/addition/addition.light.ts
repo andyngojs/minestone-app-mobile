@@ -5,7 +5,7 @@ export const getAdditionLightColor: GetAdditionColor = (colors) => {
   return {
     //     STATUS COLOR
     // @todo: for flash message - api message.
-    danger: '#ef476f',
+    danger: '#D64545',
     warning: '#ffd166',
     success: '#06d6a0',
     info: '#118ab2',

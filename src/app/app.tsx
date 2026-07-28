@@ -1,19 +1,35 @@
+import { useFonts } from "@expo-google-fonts/be-vietnam-pro";
+import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
+import { useCallback } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import initI18n, { LANGUAGE_CODE } from "@/i18n";
 import RootNavigator from "@/routes/root-navigator";
 import { useTheme } from "@/store/theme.store";
-import { isDarkTheme } from "@/theme";
+import { FONT_ASSETS, isDarkTheme } from "@/theme";
 
 initI18n(LANGUAGE_CODE.EN);
 
+SplashScreen.preventAutoHideAsync();
+
 export default function App() {
   const theme = useTheme();
+  const [fontsLoaded] = useFonts(FONT_ASSETS);
+
+  const onLayoutRootView = useCallback(() => {
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider onLayout={onLayoutRootView}>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <StatusBar style={isDarkTheme(theme) ? "light" : "dark"} />
         <RootNavigator />

@@ -1,17 +1,18 @@
 import {CoreCommonColor, GetCoreColor} from '../../data/model';
+import {COLOR_NEUTRAL, COLOR_PRIMARY, COLOR_SECONDARY, COLOR_TERTIARY, COLOR_TEXT} from '../../tokens';
 
 export const CORE_COMMON: CoreCommonColor = {
-  // GREY
-  grey50: '#FCFCFC',
-  grey100: '#F7F7F7',
-  grey200: '#F2F2F2',
-  grey300: '#EAEAEA',
-  grey400: '#C8C8C8',
-  grey500: '#AAAAAA',
-  grey600: '#808080',
-  grey700: '#6B6B6B',
-  grey800: '#4C4C4C',
-  grey900: '#2A2A2A',
+  // GREY (Organic Design System — neutral/warm-gray ramp)
+  grey50: COLOR_NEUTRAL[100],
+  grey100: COLOR_NEUTRAL[100],
+  grey200: COLOR_NEUTRAL[200],
+  grey300: COLOR_NEUTRAL[300],
+  grey400: COLOR_NEUTRAL[400],
+  grey500: COLOR_NEUTRAL[500],
+  grey600: COLOR_NEUTRAL[600],
+  grey700: COLOR_NEUTRAL[700],
+  grey800: COLOR_NEUTRAL[800],
+  grey900: COLOR_NEUTRAL[900],
 
   // GREEN
   green50: '#e9f6e9',
@@ -71,21 +72,21 @@ export const CORE_COMMON: CoreCommonColor = {
 export const getCoreColor: GetCoreColor = (colors) => ({
   ...colors,
 
-  // PRIMARY
-  primary: '#9A6D38',
-  onPrimary: '#FFFFFF',
+  // PRIMARY — Terracotta (accent-500)
+  primary: COLOR_PRIMARY[500],
+  onPrimary: COLOR_TERTIARY.bg,
 
-  // SECONDARY
-  secondary: '#9A6D38',
-  onSecondary: '#FFFFFF',
+  // SECONDARY — Sage (accent-2-500)
+  secondary: COLOR_SECONDARY[500],
+  onSecondary: COLOR_TERTIARY.bg,
 
   // NEUTRAL (Nature)
   neutral: colors.grey500,
   // —— Neutral variants ——
-  background: '#E9E9EE',
-  onBackground: '#000000',
-  surface: '#FFFFFF',
-  onSurface: '#000000',
+  background: COLOR_TERTIARY.bg,
+  onBackground: COLOR_TEXT,
+  surface: COLOR_TERTIARY.surface,
+  onSurface: COLOR_TEXT,
 
   skeletonContainer: colors.blueGray100,
   // skeletonContent: lightenColor(colors.blueGray100 as string, -12),

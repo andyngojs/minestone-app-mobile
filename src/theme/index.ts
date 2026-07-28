@@ -3,3 +3,5 @@ export * from './theme.dark';
 export * from './data/model';
 export * from './theme.constant';
 export * from './utils';
+export * from './font';
+export * from './tokens';

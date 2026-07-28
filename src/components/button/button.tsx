@@ -2,15 +2,8 @@ import { useMemo } from "react";
 import { Pressable, Text } from "react-native";
 
 import { Icon, IconFamily, IconName } from "@/components/icon/icon";
-import {
-  COLOR_DANGER,
-  COLOR_DIVIDER,
-  COLOR_NEUTRAL,
-  COLOR_PRIMARY,
-  COLOR_SECONDARY,
-  COLOR_TERTIARY,
-  COLOR_TEXT,
-} from "@/theme";
+import { useTheme } from "@/store/theme.store";
+import { Theme } from "@/theme";
 import { hexToRgba } from "@/utils/color";
 import { px2dp } from "@/utils/adaptor-style-sheet";
 
@@ -18,20 +11,32 @@ import createStyles from "./styles";
 
 export type ButtonVariant = "primary" | "secondary" | "inverted" | "outlined";
 
-const VARIANT_COLORS: Record<
+const getVariantColors = (theme: Theme): Record<
   ButtonVariant,
   { bg: string; bgPressed: string; text: string; border?: string }
-> = {
-  primary: { bg: COLOR_PRIMARY[500], bgPressed: COLOR_PRIMARY[600], text: COLOR_TERTIARY.bg },
-  secondary: { bg: COLOR_NEUTRAL[200], bgPressed: COLOR_NEUTRAL[300], text: COLOR_TEXT },
-  inverted: { bg: COLOR_NEUTRAL[900], bgPressed: COLOR_NEUTRAL[800], text: COLOR_TERTIARY.bg },
+> => ({
+  primary: {
+    bg: theme.color.terracotta500 as string,
+    bgPressed: theme.color.terracotta600 as string,
+    text: theme.color.background as string,
+  },
+  secondary: {
+    bg: theme.color.grey200 as string,
+    bgPressed: theme.color.grey300 as string,
+    text: theme.color.textPrimary as string,
+  },
+  inverted: {
+    bg: theme.color.grey900 as string,
+    bgPressed: theme.color.grey800 as string,
+    text: theme.color.background as string,
+  },
   outlined: {
     bg: "transparent",
-    bgPressed: hexToRgba(COLOR_TEXT, 0.1),
-    text: COLOR_TEXT,
-    border: COLOR_DIVIDER,
+    bgPressed: hexToRgba(theme.color.textPrimary as string, 0.1),
+    text: theme.color.textPrimary as string,
+    border: theme.color.divider as string,
   },
-};
+});
 
 type ButtonProps = {
   label: string;
@@ -42,8 +47,9 @@ type ButtonProps = {
 };
 
 export function Button({ label, variant = "primary", onPress, disabled, icon }: ButtonProps) {
-  const styles = useMemo(() => createStyles(), []);
-  const colors = VARIANT_COLORS[variant];
+  const theme = useTheme();
+  const styles = useMemo(() => createStyles(theme), [theme]);
+  const colors = getVariantColors(theme)[variant];
 
   return (
     <Pressable
@@ -64,12 +70,12 @@ export function Button({ label, variant = "primary", onPress, disabled, icon }: 
 
 export type IconButtonIntent = "primary" | "secondary" | "neutral" | "danger";
 
-const ICON_BUTTON_COLORS: Record<IconButtonIntent, { bg: string; bgPressed: string }> = {
-  primary: { bg: COLOR_PRIMARY[500], bgPressed: COLOR_PRIMARY[600] },
-  secondary: { bg: COLOR_SECONDARY[500], bgPressed: COLOR_SECONDARY[600] },
-  neutral: { bg: COLOR_NEUTRAL[500], bgPressed: COLOR_NEUTRAL[600] },
-  danger: { bg: COLOR_DANGER, bgPressed: COLOR_DANGER },
-};
+const getIconButtonColors = (theme: Theme): Record<IconButtonIntent, { bg: string; bgPressed: string }> => ({
+  primary: { bg: theme.color.terracotta500 as string, bgPressed: theme.color.terracotta600 as string },
+  secondary: { bg: theme.color.sage500 as string, bgPressed: theme.color.sage600 as string },
+  neutral: { bg: theme.color.grey500 as string, bgPressed: theme.color.grey600 as string },
+  danger: { bg: theme.color.danger as string, bgPressed: theme.color.danger as string },
+});
 
 type IconButtonProps = {
   name: IconName;
@@ -88,8 +94,9 @@ export function IconButton({
   disabled,
   size = 44,
 }: IconButtonProps) {
-  const styles = useMemo(() => createStyles(), []);
-  const colors = ICON_BUTTON_COLORS[intent];
+  const theme = useTheme();
+  const styles = useMemo(() => createStyles(theme), [theme]);
+  const colors = getIconButtonColors(theme)[intent];
 
   return (
     <Pressable
@@ -105,7 +112,7 @@ export function IconButton({
         disabled && styles.disabled,
       ]}
     >
-      <Icon name={name} family={family} size={size * 0.45} color={COLOR_TERTIARY.bg} />
+      <Icon name={name} family={family} size={size * 0.45} color={theme.color.background as string} />
     </Pressable>
   );
 }

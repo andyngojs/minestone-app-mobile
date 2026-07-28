@@ -2,7 +2,6 @@ import { useMemo, useState } from "react";
 import { TextInput, TextInputProps } from "react-native";
 
 import { useTheme } from "@/store/theme.store";
-import { COLOR_DIVIDER, COLOR_NEUTRAL, COLOR_PRIMARY } from "@/theme";
 import { hexToRgba } from "@/utils/color";
 
 import createStyles from "./styles";
@@ -13,15 +12,15 @@ type InputProps = TextInputProps & {
 
 export function Input({ disabled, style, onFocus, onBlur, ...props }: InputProps) {
   const theme = useTheme();
-  const styles = useMemo(() => createStyles(), []);
+  const styles = useMemo(() => createStyles(theme), [theme]);
   const [focused, setFocused] = useState(false);
 
   return (
     <TextInput
       {...props}
       editable={!disabled}
-      placeholderTextColor={COLOR_NEUTRAL[500]}
-      selectionColor={hexToRgba(COLOR_PRIMARY[500], 0.3)}
+      placeholderTextColor={theme.color.grey500 as string}
+      selectionColor={hexToRgba(theme.color.terracotta500 as string, 0.3)}
       onFocus={(event) => {
         setFocused(true);
         onFocus?.(event);
@@ -34,7 +33,7 @@ export function Input({ disabled, style, onFocus, onBlur, ...props }: InputProps
         styles.base,
         {
           backgroundColor: theme.color.surface as string,
-          borderColor: focused ? (COLOR_PRIMARY[500] as string) : COLOR_DIVIDER,
+          borderColor: focused ? (theme.color.terracotta500 as string) : (theme.color.divider as string),
           color: theme.color.textPrimary as string,
         },
         focused && styles.focused,

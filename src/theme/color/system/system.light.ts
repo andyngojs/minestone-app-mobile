@@ -38,6 +38,7 @@ export const getSystemColor: GetSystemColor = (colors, systemCommonColors) => ({
   // MAPPING
   // —— GREY variants ——
   border: colors.grey300,
+  divider: hexToRgba(systemCommonColors.onSurface as string, 0.16),
   placeholder: colors.grey500,
   disabled: colors.grey200,
   onDisabled: colors.grey500,

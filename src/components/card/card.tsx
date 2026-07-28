@@ -3,7 +3,6 @@ import { useMemo } from "react";
 import { Text, View } from "react-native";
 
 import { useTheme } from "@/store/theme.store";
-import { COLOR_PRIMARY, SHADOW } from "@/theme";
 
 import createStyles from "./styles";
 
@@ -15,13 +14,13 @@ type CardProps = PropsWithChildren<{
 
 function CardRoot({ elevation = "sm", children }: CardProps) {
   const theme = useTheme();
-  const styles = useMemo(() => createStyles(), []);
+  const styles = useMemo(() => createStyles(theme), [theme]);
 
   return (
     <View
       style={[
         styles.base,
-        SHADOW[elevation],
+        theme.layout.shadow[elevation],
         { backgroundColor: theme.color.surface as string },
       ]}
     >
@@ -31,24 +30,26 @@ function CardRoot({ elevation = "sm", children }: CardProps) {
 }
 
 function CardKicker({ children }: PropsWithChildren) {
-  const styles = useMemo(() => createStyles(), []);
-  return <Text style={[styles.kicker, { color: COLOR_PRIMARY[700] }]}>{children}</Text>;
+  const theme = useTheme();
+  const styles = useMemo(() => createStyles(theme), [theme]);
+  return <Text style={[styles.kicker, { color: theme.color.terracotta700 as string }]}>{children}</Text>;
 }
 
 function CardTitle({ children }: PropsWithChildren) {
   const theme = useTheme();
-  const styles = useMemo(() => createStyles(), []);
+  const styles = useMemo(() => createStyles(theme), [theme]);
   return <Text style={[styles.title, { color: theme.color.textPrimary as string }]}>{children}</Text>;
 }
 
 function CardBody({ children }: PropsWithChildren) {
   const theme = useTheme();
-  const styles = useMemo(() => createStyles(), []);
+  const styles = useMemo(() => createStyles(theme), [theme]);
   return <Text style={[styles.body, { color: theme.color.textPrimary as string }]}>{children}</Text>;
 }
 
 function CardMeta({ children }: PropsWithChildren) {
-  const styles = useMemo(() => createStyles(), []);
+  const theme = useTheme();
+  const styles = useMemo(() => createStyles(theme), [theme]);
   return <Text style={styles.meta}>{children}</Text>;
 }
 

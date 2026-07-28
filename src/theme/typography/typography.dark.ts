@@ -1,3 +1,4 @@
+import {hexToRgba} from '@/utils/color';
 import {COLOR_DARK} from '../color';
 import {GetTypography, TypographyFontSize, TypographyType} from '../data/model';
 
@@ -227,6 +228,28 @@ export const getTypographyDarkColor: GetTypography = (colors) => ({
     fontSize: 16,
     textTransform: 'uppercase',
     color: colors.onPrimary,
+  },
+
+  // ORGANIC (flat scale — fontFamily applied separately via theme.font)
+  [TypographyType.HEADLINE]: {
+    fontSize: 42,
+    lineHeight: 46,
+    color: colors.textPrimary,
+  },
+  [TypographyType.BODY]: {
+    fontSize: 15,
+    lineHeight: 23,
+    color: colors.textPrimary,
+  },
+  [TypographyType.LABEL]: {
+    fontSize: 14,
+    lineHeight: 17,
+    color: colors.textPrimary,
+  },
+  [TypographyType.CAPTION]: {
+    fontSize: 11,
+    lineHeight: 15,
+    color: hexToRgba(colors.textPrimary as string, 0.55),
   },
 });
 

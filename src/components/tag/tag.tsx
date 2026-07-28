@@ -1,20 +1,21 @@
 import { useMemo } from "react";
 import { Text, View } from "react-native";
 
-import { COLOR_DIVIDER, COLOR_NEUTRAL, COLOR_PRIMARY, COLOR_SECONDARY, COLOR_TEXT } from "@/theme";
+import { useTheme } from "@/store/theme.store";
+import { Theme } from "@/theme";
 
 import createStyles from "./styles";
 
 export type TagVariant = "accent" | "accent-solid" | "accent2" | "neutral" | "outline";
 export type TagSize = "pill" | "sm";
 
-const VARIANT_COLORS: Record<TagVariant, { bg: string; text: string; border?: string }> = {
-  accent: { bg: COLOR_PRIMARY[100], text: COLOR_PRIMARY[700] },
-  "accent-solid": { bg: COLOR_PRIMARY[500], text: COLOR_PRIMARY[100] },
-  accent2: { bg: COLOR_SECONDARY[100], text: COLOR_SECONDARY[700] },
-  neutral: { bg: COLOR_NEUTRAL[200], text: COLOR_NEUTRAL[700] },
-  outline: { bg: "transparent", text: COLOR_TEXT, border: COLOR_DIVIDER },
-};
+const getVariantColors = (theme: Theme): Record<TagVariant, { bg: string; text: string; border?: string }> => ({
+  accent: { bg: theme.color.terracotta100 as string, text: theme.color.terracotta700 as string },
+  "accent-solid": { bg: theme.color.terracotta500 as string, text: theme.color.terracotta100 as string },
+  accent2: { bg: theme.color.sage100 as string, text: theme.color.sage700 as string },
+  neutral: { bg: theme.color.grey200 as string, text: theme.color.grey700 as string },
+  outline: { bg: "transparent", text: theme.color.textPrimary as string, border: theme.color.divider as string },
+});
 
 type TagProps = {
   label: string;
@@ -23,8 +24,9 @@ type TagProps = {
 };
 
 export function Tag({ label, variant = "accent", size = "pill" }: TagProps) {
-  const styles = useMemo(() => createStyles(), []);
-  const colors = VARIANT_COLORS[variant];
+  const theme = useTheme();
+  const styles = useMemo(() => createStyles(theme), [theme]);
+  const colors = getVariantColors(theme)[variant];
 
   return (
     <View

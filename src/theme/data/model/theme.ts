@@ -1,4 +1,4 @@
-import {StatusBarStyle, TextStyle} from 'react-native';
+import {StatusBarStyle, TextStyle, ViewStyle} from 'react-native';
 import {Color} from './color';
 import {TypographyType} from './typography';
 
@@ -6,6 +6,11 @@ export type Typography = {
   [type in TypographyType]?: TextStyle;
 };
 export type GetTypography = <T extends Color>(colors: T) => Typography;
+
+export type ShadowPreset = Pick<
+  ViewStyle,
+  'shadowColor' | 'shadowOffset' | 'shadowOpacity' | 'shadowRadius' | 'elevation'
+>;
 
 export type Layout = {
   borderWidthPixel: number;
@@ -18,16 +23,13 @@ export type Layout = {
   borderRadiusLarge: number;
   borderRadiusHuge: number;
   borderRadiusGigantic: number;
+  borderRadiusPill: number;
 
+  spacing: {xs: number; sm: number; md: number; lg: number; xl: number; xxl: number};
   shadow: {
-    shadowOffset: {
-      width: number;
-      height: number;
-    };
-    shadowOpacity: number;
-    shadowRadius: number;
-
-    elevation: number;
+    sm: ShadowPreset;
+    md: ShadowPreset;
+    lg: ShadowPreset;
   };
 
   statusBarStyle: StatusBarStyle;

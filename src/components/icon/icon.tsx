@@ -8,7 +8,7 @@ import {
 } from "@expo/vector-icons";
 import type { ComponentType } from "react";
 
-import { COLOR_TEXT } from "@/theme";
+import { useTheme } from "@/store/theme.store";
 import { px2dp } from "@/utils/adaptor-style-sheet";
 
 const ICON_SETS = {
@@ -30,11 +30,18 @@ type IconProps = {
   color?: string;
 };
 
-export function Icon({ family, name, size = 24, color = COLOR_TEXT }: IconProps) {
+export function Icon({ family, name, size = 24, color }: IconProps) {
+  const theme = useTheme();
   const IconComponent = ICON_SETS[family ?? "feather"] as ComponentType<{
     name: string;
     size: number;
     color: string;
   }>;
-  return <IconComponent name={name} size={px2dp(size)} color={color} />;
+  return (
+    <IconComponent
+      name={name}
+      size={px2dp(size)}
+      color={color ?? (theme.color.textPrimary as string)}
+    />
+  );
 }

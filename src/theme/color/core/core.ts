@@ -1,18 +1,38 @@
 import {CoreCommonColor, GetCoreColor} from '../../data/model';
-import {COLOR_NEUTRAL, COLOR_PRIMARY, COLOR_SECONDARY, COLOR_TERTIARY, COLOR_TEXT} from '../../tokens';
 
 export const CORE_COMMON: CoreCommonColor = {
   // GREY (Organic Design System — neutral/warm-gray ramp)
-  grey50: COLOR_NEUTRAL[100],
-  grey100: COLOR_NEUTRAL[100],
-  grey200: COLOR_NEUTRAL[200],
-  grey300: COLOR_NEUTRAL[300],
-  grey400: COLOR_NEUTRAL[400],
-  grey500: COLOR_NEUTRAL[500],
-  grey600: COLOR_NEUTRAL[600],
-  grey700: COLOR_NEUTRAL[700],
-  grey800: COLOR_NEUTRAL[800],
-  grey900: COLOR_NEUTRAL[900],
+  grey100: '#F9F4ED',
+  grey200: '#EEE7DB',
+  grey300: '#DCD3C4',
+  grey400: '#C0B6A5',
+  grey500: '#A19786',
+  grey600: '#82796A',
+  grey700: '#645C50',
+  grey800: '#474238',
+  grey900: '#2E2B25',
+
+  // TERRACOTTA (accent — primary ramp)
+  terracotta100: '#FFF2EB',
+  terracotta200: '#FFE1D0',
+  terracotta300: '#FFC6A5',
+  terracotta400: '#F6A06B',
+  terracotta500: '#C67139',
+  terracotta600: '#B2622D',
+  terracotta700: '#8C491A',
+  terracotta800: '#643312',
+  terracotta900: '#402310',
+
+  // SAGE (accent-2 — secondary ramp)
+  sage100: '#F0FAE1',
+  sage200: '#E1EECC',
+  sage300: '#CCDBB2',
+  sage400: '#AEBF92',
+  sage500: '#7A8A5E',
+  sage600: '#728157',
+  sage700: '#56633F',
+  sage800: '#3D472B',
+  sage900: '#272E1B',
 
   // GREEN
   green50: '#e9f6e9',
@@ -73,20 +93,20 @@ export const getCoreColor: GetCoreColor = (colors) => ({
   ...colors,
 
   // PRIMARY — Terracotta (accent-500)
-  primary: COLOR_PRIMARY[500],
-  onPrimary: COLOR_TERTIARY.bg,
+  primary: colors.terracotta500,
+  onPrimary: '#F5EAD8',
 
   // SECONDARY — Sage (accent-2-500)
-  secondary: COLOR_SECONDARY[500],
-  onSecondary: COLOR_TERTIARY.bg,
+  secondary: colors.sage500,
+  onSecondary: '#F5EAD8',
 
   // NEUTRAL (Nature)
   neutral: colors.grey500,
   // —— Neutral variants ——
-  background: COLOR_TERTIARY.bg,
-  onBackground: COLOR_TEXT,
-  surface: COLOR_TERTIARY.surface,
-  onSurface: COLOR_TEXT,
+  background: '#F5EAD8',
+  onBackground: '#201E1D',
+  surface: '#EBDDC5',
+  onSurface: '#201E1D',
 
   skeletonContainer: colors.blueGray100,
   // skeletonContent: lightenColor(colors.blueGray100 as string, -12),

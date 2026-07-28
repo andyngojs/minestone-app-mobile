@@ -1,15 +1,15 @@
-import { FONT_FAMILY, RADIUS, SPACING, TYPOGRAPHY } from "@/theme";
+import { FONT_FAMILY, Theme, TypographyType } from "@/theme";
 import AdaptorStyleSheet from "@/utils/adaptor-style-sheet";
 
-export default function createStyles() {
+export default function createStyles(theme: Theme) {
   return AdaptorStyleSheet.create({
     base: {
-      borderRadius: RADIUS.lg,
-      padding: SPACING[4],
-      gap: SPACING[1],
+      borderRadius: theme.layout.borderRadiusLarge,
+      padding: theme.layout.spacing.lg,
+      gap: theme.layout.spacing.xs,
     },
     kicker: {
-      ...TYPOGRAPHY.caption,
+      ...theme.typography[TypographyType.CAPTION],
       fontFamily: FONT_FAMILY.semiBold,
       textTransform: "uppercase",
       letterSpacing: 0.6,
@@ -20,10 +20,12 @@ export default function createStyles() {
       lineHeight: 23,
     },
     body: {
-      ...TYPOGRAPHY.body,
+      ...theme.typography[TypographyType.BODY],
+      fontFamily: theme.font?.main ?? FONT_FAMILY.regular,
     },
     meta: {
-      ...TYPOGRAPHY.caption,
+      ...theme.typography[TypographyType.CAPTION],
+      fontFamily: theme.font?.main ?? FONT_FAMILY.regular,
     },
   });
 }

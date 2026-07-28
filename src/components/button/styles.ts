@@ -1,19 +1,20 @@
-import { RADIUS, SPACING, TYPOGRAPHY } from "@/theme";
+import { FONT_FAMILY, Theme, TypographyType } from "@/theme";
 import AdaptorStyleSheet from "@/utils/adaptor-style-sheet";
 
-export default function createStyles() {
+export default function createStyles(theme: Theme) {
   return AdaptorStyleSheet.create({
     base: {
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "center",
       gap: 6,
-      borderRadius: RADIUS.pill,
-      paddingVertical: SPACING[2],
-      paddingHorizontal: SPACING[3] * 1.2,
+      borderRadius: theme.layout.borderRadiusPill,
+      paddingVertical: theme.layout.spacing.sm,
+      paddingHorizontal: theme.layout.spacing.md * 1.2,
     },
     label: {
-      ...TYPOGRAPHY.label,
+      ...theme.typography[TypographyType.LABEL],
+      fontFamily: theme.font?.main ?? FONT_FAMILY.regular,
     },
     outlined: {
       borderWidth: 1.5,
@@ -24,7 +25,7 @@ export default function createStyles() {
     iconButton: {
       alignItems: "center",
       justifyContent: "center",
-      borderRadius: RADIUS.pill,
+      borderRadius: theme.layout.borderRadiusPill,
     },
   });
 }

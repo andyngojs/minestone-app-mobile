@@ -2,7 +2,6 @@ import {ColorValue} from 'react-native';
 
 export type CoreCommonColor = {
   // Core
-  grey50: ColorValue;
   grey100: ColorValue;
   grey200: ColorValue;
   grey300: ColorValue;
@@ -12,6 +11,28 @@ export type CoreCommonColor = {
   grey700: ColorValue;
   grey800: ColorValue;
   grey900: ColorValue;
+
+  // terracotta (accent — primary ramp)
+  terracotta100: ColorValue;
+  terracotta200: ColorValue;
+  terracotta300: ColorValue;
+  terracotta400: ColorValue;
+  terracotta500: ColorValue;
+  terracotta600: ColorValue;
+  terracotta700: ColorValue;
+  terracotta800: ColorValue;
+  terracotta900: ColorValue;
+
+  // sage (accent-2 — secondary ramp)
+  sage100: ColorValue;
+  sage200: ColorValue;
+  sage300: ColorValue;
+  sage400: ColorValue;
+  sage500: ColorValue;
+  sage600: ColorValue;
+  sage700: ColorValue;
+  sage800: ColorValue;
+  sage900: ColorValue;
 
   // green
   green50: ColorValue;
@@ -114,6 +135,7 @@ export type SystemColor = SystemCommonColor & {
   secondary20: ColorValue;
   persistOnSurface: ColorValue;
   border: ColorValue;
+  divider: ColorValue;
   placeholder: ColorValue;
   disabled: ColorValue;
   onDisabled: ColorValue;

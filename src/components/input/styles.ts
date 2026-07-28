@@ -1,15 +1,16 @@
-import { RADIUS, SPACING, TYPOGRAPHY } from "@/theme";
+import { FONT_FAMILY, Theme, TypographyType } from "@/theme";
 import AdaptorStyleSheet from "@/utils/adaptor-style-sheet";
 
-export default function createStyles() {
+export default function createStyles(theme: Theme) {
   return AdaptorStyleSheet.create({
     base: {
-      ...TYPOGRAPHY.body,
+      ...theme.typography[TypographyType.BODY],
+      fontFamily: theme.font?.main ?? FONT_FAMILY.regular,
       fontSize: 14,
-      borderRadius: RADIUS.md,
+      borderRadius: theme.layout.borderRadiusMedium,
       borderWidth: 1,
-      paddingVertical: SPACING[2],
-      paddingHorizontal: SPACING[3],
+      paddingVertical: theme.layout.spacing.sm,
+      paddingHorizontal: theme.layout.spacing.md,
     },
     focused: {
       borderWidth: 2,

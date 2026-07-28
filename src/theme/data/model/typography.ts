@@ -64,6 +64,11 @@ export enum TypographyType {
 
   CAPTION = 'caption',
   BUTTON_TEXT = 'buttonText',
+
+  // ORGANIC (flat scale — fontFamily applied separately via theme.font)
+  HEADLINE = 'headline',
+  BODY = 'body',
+  LABEL = 'label',
 }
 
 export enum TypographyFontSize {

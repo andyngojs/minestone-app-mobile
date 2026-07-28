@@ -41,6 +41,7 @@ export const getSystemDarkColor: GetSystemColor = (
   ...systemCommonColors,
 
   border: coreColors.grey700,
+  divider: hexToRgba(systemCommonColors.onSurface as string, 0.16),
   placeholder: coreColors.grey500,
   disabled: '#444444',
 

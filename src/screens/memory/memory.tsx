@@ -13,9 +13,7 @@ export default function Memory() {
 
   return (
     <Screen>
-      <Header title="Minestone" />
-
-      <ScrollView contentContainerStyle={styles.content}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.content}>
         <Typography type={TypographyType.TITLE_LARGE} style={styles.headline}>
           Feeling a little off today?
         </Typography>

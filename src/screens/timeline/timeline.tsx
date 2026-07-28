@@ -121,9 +121,7 @@ export default function Timeline() {
 
   return (
     <Screen>
-      <Header title="Minestone" />
-
-      <ScrollView contentContainerStyle={styles.content}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.content}>
         <Typography type={TypographyType.CAPTION} style={styles.sectionLabel}>
           This week
         </Typography>

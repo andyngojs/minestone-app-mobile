@@ -43,9 +43,8 @@ export default function Home() {
 
   return (
     <Screen>
-      <Header title="Minestone" />
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.content}>
 
-      <ScrollView contentContainerStyle={styles.content}>
         <View style={styles.greeting}>
           <Typography type={TypographyType.TITLE_LARGE} style={styles.greetingLine}>
             Hi Andy,

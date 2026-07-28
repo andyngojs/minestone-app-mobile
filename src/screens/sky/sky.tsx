@@ -30,9 +30,7 @@ export default function Sky() {
 
   return (
     <Screen>
-      <Header title="Minestone" />
-
-      <ScrollView contentContainerStyle={styles.content}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.content}>
         <View style={styles.headlineWrap}>
           <Typography type={TypographyType.HEADLINE} style={styles.headline}>
             Your Constellation

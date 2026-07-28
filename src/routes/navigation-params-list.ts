@@ -1,5 +1,8 @@
+import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+
 export type RootStackParamList = {
-  Main: undefined;
+  BottomTab: undefined;
 };
 
 export type BottomTabParamList = {
@@ -8,3 +11,11 @@ export type BottomTabParamList = {
   Memory: undefined;
   Timeline: undefined;
 };
+
+export type AppScreenProps<T extends keyof RootStackParamList> =
+  NativeStackScreenProps<RootStackParamList, T>;
+
+export type AppBottomTabScreenProps<T extends keyof BottomTabParamList> =
+  BottomTabScreenProps<BottomTabParamList, T>;
+
+export type AppStackScreenList = NativeStackScreenProps<RootStackParamList>;

@@ -1,13 +1,16 @@
-import { StyleSheet } from "react-native";
+import AdaptorStyleSheet from "@/utils/adaptor-style-sheet";
+import { Theme, TypographyType } from "@/theme";
 
-export default StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "600",
-  },
-});
+export default function createStyles(theme: Theme) {
+  return AdaptorStyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: theme.color.background as string,
+    },
+    title: {
+      ...theme.typography[TypographyType.TITLE_LARGE],
+    },
+  });
+}

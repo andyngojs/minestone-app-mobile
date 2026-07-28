@@ -4,19 +4,25 @@
  * uiWidthPx和 rootValue类似， 根据设计稿尺寸来填写
  * 参考: https://juejin.cn/post/6889339410546950152
  */
-import { Dimensions, StyleSheet, ImageStyle, TextStyle, ViewStyle } from "react-native"
-import { StyleProp } from "react-native/Libraries/StyleSheet/StyleSheet"
+import {
+    Dimensions,
+    ImageStyle,
+    StyleSheet,
+    TextStyle,
+    ViewStyle,
+} from "react-native";
+import { StyleProp } from "react-native/Libraries/StyleSheet/StyleSheet";
 
-const deviceWidthDp = Dimensions.get("window").width
+const deviceWidthDp = Dimensions.get("window").width;
 // 默认设计稿375
-const uiWidthPx = 375
+const uiWidthPx = 375;
 
 export function px2dp(uiElementPx: number) {
-  return (uiElementPx * deviceWidthDp) / uiWidthPx
+  return (uiElementPx * deviceWidthDp) / uiWidthPx;
 }
 
-function getAdaptorStyle(styles: any) {
-  const s = { ...styles }
+export function getAdaptorStyle(styles: any) {
+  const s = { ...styles };
   // 目前仅对以下的属性进行处理
   const list = [
     "width",
@@ -48,18 +54,20 @@ function getAdaptorStyle(styles: any) {
     "borderBottomRightRadius",
     "columnGap",
     "rowGap",
-  ]
+  ];
   for (const outKey in s) {
     for (const innerKey in s[outKey]) {
       if (list.includes(innerKey) && typeof s[outKey][innerKey] === "number") {
-        s[outKey][innerKey] = px2dp(s[outKey][innerKey])
+        s[outKey][innerKey] = px2dp(s[outKey][innerKey]);
       }
     }
   }
-  return s
+  return s;
 }
 
-export type NamedStyles<T> = { [P in keyof T]: ViewStyle | TextStyle | ImageStyle }
+export type NamedStyles<T> = {
+  [P in keyof T]: ViewStyle | TextStyle | ImageStyle;
+};
 
 export interface IAdaptorStyleSheet {
   create<T extends NamedStyles<T> | NamedStyles<any>>(
@@ -69,16 +77,16 @@ export interface IAdaptorStyleSheet {
     //     });
     // ```
     styles: T & NamedStyles<any>,
-  ): T
-  flatten<T>(style?: StyleProp<T>): T extends (infer U)[] ? U : T
+  ): T;
+  flatten<T>(style?: StyleProp<T>): T extends (infer U)[] ? U : T;
 }
 
 const AdaptorStyleSheet: IAdaptorStyleSheet = {
   create(style) {
-    return StyleSheet.create(getAdaptorStyle(style))
+    return StyleSheet.create(getAdaptorStyle(style));
   },
   flatten(style) {
-    return StyleSheet.flatten(getAdaptorStyle(style))
+    return StyleSheet.flatten(getAdaptorStyle(style));
   },
-}
-export default AdaptorStyleSheet
+};
+export default AdaptorStyleSheet;

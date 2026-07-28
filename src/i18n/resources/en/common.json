@@ -1,0 +1,12 @@
+{
+  "api": {
+    "error": {
+      "message": "Something wrong happened, please try later",
+      "connect": "The connection to the server failed. Please try again later!"
+    },
+    "success": {
+      "messageRegister": "Register account successfully",
+      "messageLogin": "Login successfully"
+    }
+  }
+}

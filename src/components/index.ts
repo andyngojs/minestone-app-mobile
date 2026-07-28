@@ -4,5 +4,6 @@ export * from "./header/header";
 export * from "./icon/icon";
 export * from "./input/input";
 export * from "./screen/screen";
+export * from "./tab-bar/tab-bar";
 export * from "./tag/tag";
 export * from "./typography/typography";

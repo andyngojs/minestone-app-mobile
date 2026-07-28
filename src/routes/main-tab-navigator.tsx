@@ -1,8 +1,8 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { SymbolView } from "expo-symbols";
-import { ColorValue } from "react-native";
 import { BottomTabParamList } from "./navigation-params-list";
 
+import { Icon } from "@/components/icon/icon";
+import { TabBar } from "@/components/tab-bar/tab-bar";
 import Home from "@/screens/home";
 import Memory from "@/screens/memory";
 import Sky from "@/screens/sky";
@@ -12,64 +12,25 @@ const Tab = createBottomTabNavigator<BottomTabParamList>();
 
 function getTabBarIcon(
   routeName: keyof BottomTabParamList,
-  color: ColorValue,
+  color: string,
   size: number,
 ) {
   switch (routeName) {
     case "Home":
-      return (
-        <SymbolView
-          name={{
-            ios: "house.fill",
-            android: "home_filled",
-            web: "home_filled",
-          }}
-          size={size}
-          tintColor={color}
-        />
-      );
+      return <Icon family="ionicons" name="home" size={size} color={color} />;
     case "Sky":
-      return (
-        <SymbolView
-          name={{
-            ios: "cloud.sun.fill",
-            android: "partly_cloudy_day",
-            web: "partly_cloudy_day",
-          }}
-          size={size}
-          tintColor={color}
-        />
-      );
+      return <Icon family="ionicons" name="sparkles" size={size} color={color} />;
     case "Memory":
-      return (
-        <SymbolView
-          name={{
-            ios: "photo.on.rectangle.angled.fill",
-            android: "photo_library",
-            web: "photo_library",
-          }}
-          size={size}
-          tintColor={color}
-        />
-      );
+      return <Icon family="material" name="history" size={size} color={color} />;
     case "Timeline":
-      return (
-        <SymbolView
-          name={{
-            ios: "list.bullet.clipboard.fill",
-            android: "timeline",
-            web: "timeline",
-          }}
-          size={size}
-          tintColor={color}
-        />
-      );
+      return <Icon family="feather" name="trending-up" size={size} color={color} />;
   }
 }
 
 export default function MainTabNavigator() {
   return (
     <Tab.Navigator
+      tabBar={(props) => <TabBar {...props} />}
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarIcon: ({ color, size }) => getTabBarIcon(route.name, color, size),

@@ -49,13 +49,6 @@ const SUPPORT_ROWS: SupportRow[] = [
     label: "Privacy",
     onPress: () => {},
   },
-  {
-    id: "help-center",
-    icon: { family: "feather", name: "help-circle" },
-    tone: "neutral",
-    label: "Help Center",
-    onPress: () => {},
-  },
 ];
 
 type Props = AppScreenProps<"Settings">;

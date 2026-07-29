@@ -7,6 +7,7 @@ import { useTheme } from "@/store/theme.store";
 import { TypographyType } from "@/theme";
 
 import createStyles from "./styles";
+import { px2dp } from "@/utils/adaptor-style-sheet";
 
 export function TabBar({ state, descriptors, navigation, insets }: BottomTabBarProps) {
   const theme = useTheme();
@@ -30,12 +31,12 @@ export function TabBar({ state, descriptors, navigation, insets }: BottomTabBarP
           }
         };
 
-        const iconColor = isFocused ? (theme.color.onPrimary as string) : (theme.color.textInactive as string);
+        const iconColor = isFocused ? (theme.color.terracotta500 as string) : (theme.color.textInactive as string);
 
         return (
           <Pressable key={route.key} onPress={onPress} style={styles.item}>
-            <View style={[styles.iconWrapper, isFocused && styles.iconWrapperActive]}>
-              {options.tabBarIcon?.({ focused: isFocused, color: iconColor, size: 20 })}
+            <View style={styles.iconWrapper}>
+              {options.tabBarIcon?.({ focused: isFocused, color: iconColor, size: px2dp(15) })}
             </View>
             <Typography
               type={TypographyType.CAPTION}

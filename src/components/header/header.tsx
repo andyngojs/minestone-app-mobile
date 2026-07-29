@@ -11,25 +11,35 @@ import createStyles from "./styles";
 
 type HeaderProps = {
   title?: string;
+  titleColor?: string;
   onBackPress?: () => void;
+  onClosePress?: () => void;
   right?: ReactNode;
 };
 
-export function Header({ title, onBackPress, right }: HeaderProps) {
+export function Header({ title, titleColor, onBackPress, onClosePress, right }: HeaderProps) {
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
 
   return (
     <View style={styles.container}>
       <View style={[styles.side, styles.left]}>
-        {onBackPress ? (
+        {onClosePress ? (
+          <Pressable onPress={onClosePress} hitSlop={8}>
+            <Icon name="x" family="feather" size={24} />
+          </Pressable>
+        ) : onBackPress ? (
           <Pressable onPress={onBackPress} hitSlop={8}>
             <Icon name="chevron-left" family="feather" size={26} />
           </Pressable>
         ) : null}
       </View>
 
-      <Typography type={TypographyType.TITLE_MEDIUM} numberOfLines={1} style={styles.title}>
+      <Typography
+        type={TypographyType.TITLE_MEDIUM}
+        numberOfLines={1}
+        style={[styles.title, titleColor ? { color: titleColor } : null]}
+      >
         {title}
       </Typography>
 

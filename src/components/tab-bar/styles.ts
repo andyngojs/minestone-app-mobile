@@ -11,9 +11,9 @@ export default function createStyles(theme: Theme) {
       alignItems: "center",
       backgroundColor: theme.color.background as string,
       borderRadius: theme.layout.borderRadiusPill,
-      paddingVertical: theme.layout.spacing.sm,
-      paddingHorizontal: theme.layout.spacing.sm,
-      ...theme.layout.shadow.md,
+      paddingVertical: theme.layout.spacing.xs,
+      paddingHorizontal: theme.layout.spacing.xs,
+      ...theme.layout.shadow.sm,
     },
     item: {
       flex: 1,
@@ -21,14 +21,11 @@ export default function createStyles(theme: Theme) {
       gap: 4,
     },
     iconWrapper: {
-      width: 40,
-      height: 40,
+      width: 30,
+      height: 30,
       borderRadius: theme.layout.borderRadiusPill,
       alignItems: "center",
       justifyContent: "center",
-    },
-    iconWrapperActive: {
-      backgroundColor: theme.color.terracotta500 as string,
     },
     label: {
       fontFamily: FONT_FAMILY.medium,
@@ -38,7 +35,7 @@ export default function createStyles(theme: Theme) {
     },
     labelActive: {
       fontFamily: FONT_FAMILY.bold,
-      color: theme.color.textPrimary as string,
+      color: theme.color.terracotta500 as string,
     },
   });
 }

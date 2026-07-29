@@ -1,8 +1,11 @@
 import { useMemo } from "react";
 import { ScrollView, View } from "react-native";
+import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useNavigation } from "@react-navigation/native";
 
 import { Button, Card, Header, Icon, Screen, Typography } from "@/components";
 import type { IconFamily, IconName } from "@/components/icon/icon";
+import type { RootStackParamList } from "@/routes/navigation-params-list";
 import { useTheme } from "@/store/theme.store";
 import { TypographyType } from "@/theme";
 import { hexToRgba } from "@/utils/color";
@@ -40,6 +43,7 @@ const LOGGED_MOMENTS: LoggedMoment[] = [
 export default function Home() {
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   return (
     <Screen>
@@ -78,7 +82,7 @@ export default function Home() {
           label="Log a moment"
           variant="primary"
           icon={{ name: "plus", family: "feather" }}
-          onPress={() => {}}
+          onPress={() => navigation.navigate("CreateMoment")}
         />
 
         <View style={styles.sectionHeader}>

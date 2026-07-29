@@ -5,7 +5,13 @@ import {
   BottomSheetView,
 } from "@gorhom/bottom-sheet";
 import type { ComponentRef, PropsWithChildren } from "react";
-import { forwardRef, useCallback, useImperativeHandle, useMemo, useRef } from "react";
+import {
+  forwardRef,
+  useCallback,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+} from "react";
 import { Pressable, View } from "react-native";
 
 import { Icon } from "@/components/icon/icon";
@@ -23,53 +29,70 @@ type BottomSheetModalProps = PropsWithChildren<{
   hideHeader?: boolean;
 }>;
 
-export const BottomSheetModal = forwardRef<BottomSheetModalRef, BottomSheetModalProps>(
-  function BottomSheetModal({ children, snapPoints, title, hideHeader }, ref) {
-    const theme = useTheme();
-    const styles = useMemo(() => createStyles(theme), [theme]);
-    const internalRef = useRef<BottomSheetModalRef>(null);
+export const BottomSheetModal = forwardRef<
+  BottomSheetModalRef,
+  BottomSheetModalProps
+>(function BottomSheetModal({ children, snapPoints, title, hideHeader }, ref) {
+  const theme = useTheme();
+  const styles = useMemo(() => createStyles(theme), [theme]);
+  const internalRef = useRef<BottomSheetModalRef>(null);
 
-    useImperativeHandle(ref, () => internalRef.current as BottomSheetModalRef, []);
+  useImperativeHandle(
+    ref,
+    () => internalRef.current as BottomSheetModalRef,
+    [],
+  );
 
-    const handleClosePress = useCallback(() => {
-      internalRef.current?.dismiss();
-    }, []);
+  const handleClosePress = useCallback(() => {
+    internalRef.current?.dismiss();
+  }, []);
 
-    const renderBackdrop = useCallback((props: BottomSheetBackdropProps) => {
-      return <BottomSheetBackdrop {...props} appearsOnIndex={0} disappearsOnIndex={-1} pressBehavior="close" />;
-    }, []);
-
-    const enableDynamicSizing = useMemo(() => {
-      let isEnabled = true;
-      if (snapPoints) {
-        isEnabled = false;
-      }
-      return isEnabled;
-    }, [snapPoints]);
-
+  const renderBackdrop = useCallback((props: BottomSheetBackdropProps) => {
     return (
-      <GorhomBottomSheetModal
-        ref={internalRef}
-        snapPoints={snapPoints}
-        enableDynamicSizing={enableDynamicSizing}
-        backdropComponent={renderBackdrop}
-        backgroundStyle={styles.background}
-        handleIndicatorStyle={styles.handleIndicator}
-      >
-        <BottomSheetView style={styles.content}>
-          {hideHeader ? null : (
-            <View style={styles.header}>
-              <Typography type={TypographyType.LABEL} style={styles.headerTitle}>
-                {title}
-              </Typography>
-              <Pressable onPress={handleClosePress} hitSlop={8}>
-                <Icon family="feather" name="x" size={20} color={theme.color.textPrimary as string} />
-              </Pressable>
-            </View>
-          )}
-          {children}
-        </BottomSheetView>
-      </GorhomBottomSheetModal>
+      <BottomSheetBackdrop
+        {...props}
+        appearsOnIndex={0}
+        disappearsOnIndex={-1}
+        pressBehavior="close"
+      />
     );
-  },
-);
+  }, []);
+
+  const enableDynamicSizing = useMemo(() => {
+    let isEnabled = true;
+    if (snapPoints) {
+      isEnabled = false;
+    }
+    return isEnabled;
+  }, [snapPoints]);
+
+  return (
+    <GorhomBottomSheetModal
+      ref={internalRef}
+      snapPoints={snapPoints}
+      enableDynamicSizing={enableDynamicSizing}
+      backdropComponent={renderBackdrop}
+      backgroundStyle={styles.background}
+      handleIndicatorStyle={styles.handleIndicator}
+    >
+      <BottomSheetView style={styles.content}>
+        {hideHeader ? null : (
+          <View style={styles.header}>
+            <Typography type={TypographyType.LABEL} style={styles.headerTitle}>
+              {title}
+            </Typography>
+            <Pressable onPress={handleClosePress} hitSlop={8}>
+              <Icon
+                family="feather"
+                name="x"
+                size={20}
+                color={theme.color.textPrimary as string}
+              />
+            </Pressable>
+          </View>
+        )}
+        {children}
+      </BottomSheetView>
+    </GorhomBottomSheetModal>
+  );
+});

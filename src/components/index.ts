@@ -1,3 +1,4 @@
+export * from "./bottom-sheet-modal/bottom-sheet-modal";
 export * from "./button/button";
 export * from "./card/card";
 export * from "./header/header";

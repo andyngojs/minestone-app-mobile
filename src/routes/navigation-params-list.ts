@@ -4,6 +4,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 export type RootStackParamList = {
   BottomTab: undefined;
   CreateMoment: undefined;
+  Settings: undefined;
 };
 
 export type BottomTabParamList = {

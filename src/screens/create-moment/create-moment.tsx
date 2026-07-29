@@ -1,5 +1,11 @@
 import { useMemo, useState } from "react";
-import { Pressable, ScrollView, View } from "react-native";
+import {
+  KeyboardAvoidingView,
+  Platform,
+  Pressable,
+  ScrollView,
+  View,
+} from "react-native";
 
 import {
   Button,
@@ -42,11 +48,16 @@ export default function CreateMoment({ navigation }: CreateMomentProps) {
     <Screen>
       <Header onBackPress={() => navigation.goBack()} />
 
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        style={styles.scroll}
-        contentContainerStyle={styles.content}
+      <KeyboardAvoidingView
+        style={styles.keyboardAvoiding}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          style={styles.scroll}
+          contentContainerStyle={styles.content}
+          keyboardShouldPersistTaps="handled"
+        >
         <View style={styles.heading}>
           <Typography
             type={TypographyType.TITLE_LARGE}
@@ -149,7 +160,8 @@ export default function CreateMoment({ navigation }: CreateMomentProps) {
           icon={{ name: "heart", family: "feather" }}
           onPress={handleSave}
         />
-      </ScrollView>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </Screen>
   );
 }

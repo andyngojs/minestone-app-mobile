@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { ScrollView, View } from "react-native";
+import { Pressable, ScrollView, View } from "react-native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 
@@ -49,13 +49,18 @@ export default function Home() {
     <Screen>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.content}>
 
-        <View style={styles.greeting}>
-          <Typography type={TypographyType.TITLE_LARGE} style={styles.greetingLine}>
-            Hi Andy,
-          </Typography>
-          <Typography type={TypographyType.TITLE_LARGE} style={styles.greetingHighlight}>
-            just today is enough.
-          </Typography>
+        <View style={styles.topBar}>
+          <View style={styles.greeting}>
+            <Typography type={TypographyType.TITLE_LARGE} style={styles.greetingLine}>
+              Hi Andy,
+            </Typography>
+            <Typography type={TypographyType.TITLE_LARGE} style={styles.greetingHighlight}>
+              just today is enough.
+            </Typography>
+          </View>
+          <Pressable onPress={() => navigation.navigate("Settings")} hitSlop={8}>
+            <Icon family="feather" name="settings" size={22} color={theme.color.textPrimary as string} />
+          </Pressable>
         </View>
 
         <Card elevation="sm">

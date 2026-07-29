@@ -10,6 +10,11 @@ export default function createStyles(theme: Theme) {
       gap: theme.layout.spacing.lg,
     },
 
+    topBar: {
+      flexDirection: "row",
+      alignItems: "flex-start",
+      justifyContent: "space-between",
+    },
     greeting: {
       gap: 2,
     },

@@ -3,6 +3,9 @@ import AdaptorStyleSheet from "@/utils/adaptor-style-sheet";
 
 export default function createStyles(theme: Theme) {
   return AdaptorStyleSheet.create({
+    keyboardAvoiding: {
+      flex: 1,
+    },
     scroll: {
       flex: 1,
     },
